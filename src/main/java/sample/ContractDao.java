@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContractDao {
@@ -50,6 +52,40 @@ public class ContractDao {
     }
     
     /**
+     * Oracleからすべての契約データを取得する
+     * @return 契約データのリスト(DTO)
+     */
+    public List<ContractDto> selectAll() {
+        List<ContractDto> list = new ArrayList<>();
+        String sql = "SELECT id, contractor_name, age, plan_code FROM contracts ORDER BY id";
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                ContractDto dto = new ContractDto();
+                dto.setId(rs.getInt("id"));
+                dto.setName(rs.getString("contractor_name"));
+                dto.setAge(rs.getInt("age"));
+                dto.setPlan(rs.getString("plan_code"));
+
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            System.out.println("【DAOエラー】データ全件取得中に例外が発生しました。");
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    /**
      * 指定された名前が既に登録されているかチェックする
      * @param name チェックしたい名前
      * @return 既に存在する場合はtrue、存在しない場合はfalse
@@ -79,5 +115,30 @@ public class ContractDao {
         }
         
         return false;
+    }
+    
+    /**
+     * 指定されたIDの契約データを削除する
+     * @param id 削除したいデータのID
+     */
+    public void deleteContract(int id) {
+        String sql = "DELETE FROM contracts WHERE id = ?";
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println("【DAOエラー】データ削除中に例外が発生しました。");
+            e.printStackTrace();
+        }
     }
 }

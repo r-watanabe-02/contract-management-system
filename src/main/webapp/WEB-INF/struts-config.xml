@@ -11,7 +11,13 @@
             <forward name="success" path="/result.jsp" />
             <forward name="error" path="/input.jsp" />
         </action>
+        <action path="/contractList" type="sample.ContractListAction">
+            <forward name="success" path="/list.jsp" />
+        </action>
         <action path="/checkName" type="sample.ContractCheckAction" />
+        <action path="/contractDelete" type="sample.ContractDeleteAction">
+            <forward name="success" path="/contractList.do" />
+        </action>
     </action-mappings>
     
     <message-resources parameter="sample.ApplicationResources" />
