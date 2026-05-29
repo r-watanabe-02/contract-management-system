@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>契約者一覧</title>
+    <title>契約情報一覧</title>
     
     <style>
         /* ⭕ 全体の背景とフォント（共通仕様） */
@@ -90,9 +90,9 @@
 
     <div class="container">
         
-        <h2>契約者一覧（Oracle連携）</h2>
+        <h2>契約情報一覧</h2>
         
-        <a href="input.jsp" class="nav-link">▶ 新規登録画面へ進む</a>
+        <a href="input.jsp" class="nav-link">▶ 契約情報入力画面</a>
 
         <table class="modern-table">
             <tr>

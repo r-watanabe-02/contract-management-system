@@ -119,7 +119,7 @@
             
         </div>
         
-        <a href="input.jsp" class="nav-link">◀ 入力画面へ戻る</a>
+        <a href="input.jsp" class="nav-link">◀ 契約情報入力画面</a>
         
     </div>
 
