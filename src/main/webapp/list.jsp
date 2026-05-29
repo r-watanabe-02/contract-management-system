@@ -107,7 +107,7 @@
                     <td><bean:write name="contract" property="id" /></td>
                     <td><strong><bean:write name="contract" property="name" /></strong></td>
                     <td><bean:write name="contract" property="age" /> 歳</td>
-                    <td><bean:write name="contract" property="plan" /></td>
+                    <td><bean:write name="contract" property="planName" /></td>
                     <td>
                         <a href="contractDelete.do?id=<bean:write name="contract" property="id" />" 
                            class="btn-delete"

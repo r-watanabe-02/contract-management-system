@@ -9,22 +9,27 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.util.MessageResources;
 
 public class ContractListAction extends Action {
     
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
-        // 1. DAOを呼んで、Oracleから全データを取ってくる
+
         ContractDao dao = new ContractDao();
         List<ContractDto> contractList = dao.selectAll();
-        
-        // 2. 取ってきたリストを、JSP（画面）に引き渡すためにリクエストにセットする
-        // ※「contractList」という名前でJSPから読めるようになります
+
+        // プラン名を日本語に変換する
+        MessageResources resources = getResources(request);
+        for (ContractDto dto : contractList) {
+            String planCode = dto.getPlanCode(); 
+            String planName = resources.getMessage("plan." + planCode);
+            dto.setPlanName(planName); 
+        }
+
         request.setAttribute("contractList", contractList);
-        
-        // 3. 一覧画面（success）へ進む
+
         return mapping.findForward("success");
     }
 }

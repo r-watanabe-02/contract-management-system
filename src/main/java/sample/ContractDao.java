@@ -74,7 +74,7 @@ public class ContractDao {
                 dto.setId(rs.getInt("id"));
                 dto.setName(rs.getString("contractor_name"));
                 dto.setAge(rs.getInt("age"));
-                dto.setPlan(rs.getString("plan_code"));
+                dto.setPlanCode(rs.getString("plan_code"));
 
                 list.add(dto);
             }

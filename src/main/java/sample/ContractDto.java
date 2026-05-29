@@ -3,29 +3,17 @@ package sample;
 import java.io.Serializable;
 
 /**
- * 契約データを保持するDTOクラス（データ専用の箱）
+ * 契約データを保持するDTOクラス
  */
 public class ContractDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
-    private String name; // データベースの contractor_name に対応
-    private int age;     // データベース側が数値型なら int で持つのが綺麗です
-    private String plan;
+    private String contractorName;
+    private int age;
+    private String planCode;
+    private String planName; // 画面表示用の日本語プラン名
 
-    // 引数なしのコンストラクタ
-    public ContractDto() {
-    }
-
-    // すべてのフィールドを持つ便利なコンストラクタ（任意ですがあると便利です）
-    public ContractDto(int id, String name, int age, String plan) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.plan = plan;
-    }
-
-    // 以下、すべての Getter / Setter
     public int getId() {
         return id;
     }
@@ -34,10 +22,10 @@ public class ContractDto implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return contractorName;
     }
     public void setName(String name) {
-        this.name = name;
+        this.contractorName = name;
     }
 
     public int getAge() {
@@ -47,10 +35,18 @@ public class ContractDto implements Serializable {
         this.age = age;
     }
 
-    public String getPlan() {
-        return plan;
+    public String getPlanCode() {
+        return planCode;
     }
-    public void setPlan(String plan) {
-        this.plan = plan;
+    public void setPlanCode(String plan) {
+        this.planCode = plan;
+    }
+    
+    public String getPlanName() {
+        return planName;
+    }
+
+    public void setPlanName(String planName) {
+        this.planName = planName;
     }
 }
