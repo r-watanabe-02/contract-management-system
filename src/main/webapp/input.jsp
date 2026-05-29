@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 
 <!DOCTYPE html>
 <html>
@@ -217,9 +218,9 @@
             <div class="form-group">
                 <label>保険プラン</label>
                 <html:select property="plan">
-                    <html:option value="standard">スタンダードプラン</html:option>
-                    <html:option value="premium">プレミアムプラン</html:option>
-                    <html:option value="economy">節約プラン</html:option>
+                    <html:option value="standard"><bean:message key="plan.standard" /></html:option>
+                    <html:option value="premium"><bean:message key="plan.premium" /></html:option>
+                    <html:option value="economy"><bean:message key="plan.economy" /></html:option>
                 </html:select>
             </div>
             
