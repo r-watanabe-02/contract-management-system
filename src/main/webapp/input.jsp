@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>契約者入力</title>
+    <title>契約情報入力</title>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
@@ -184,9 +185,9 @@
 <body>
 
     <div class="container">
-        <h2>バス保険 契約者入力</h2>
+        <h2>契約情報入力</h2>
         
-        <a href="contractList.do" class="nav-link">◀ 登録者一覧を見る</a>
+        <a href="contractList.do" class="nav-link">◀ 契約情報一覧</a>
 
         <html:messages id="err" property="ageError">
             <div class="error-container">
@@ -215,11 +216,11 @@
             </div>
             
             <div class="form-group">
-                <label>保険プラン</label>
+                <label>プラン</label>
                 <html:select property="plan">
-                    <html:option value="standard">スタンダードプラン</html:option>
-                    <html:option value="premium">プレミアムプラン</html:option>
-                    <html:option value="economy">節約プラン</html:option>
+                    <html:option value="standard"><bean:message key="plan.standard" /></html:option>
+                    <html:option value="premium"><bean:message key="plan.premium" /></html:option>
+                    <html:option value="economy"><bean:message key="plan.economy" /></html:option>
                 </html:select>
             </div>
             

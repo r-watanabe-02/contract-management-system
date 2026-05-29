@@ -9,6 +9,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
+import org.apache.struts.util.MessageResources;
 
 public class ContractAction extends Action {
     
@@ -46,19 +47,13 @@ public class ContractAction extends Action {
         ContractDao dao = new ContractDao();
         dao.insert(contractForm);
 
+        // 1. フォームからプランコードを取得
         String planCode = contractForm.getPlan();
-        String planName = "";
-        if ("standard".equals(planCode)) {
-            planName = "スタンダードプラン";
-        } else if ("premium".equals(planCode)) {
-            planName = "プレミアムプラン";
-        } else if ("economy".equals(planCode)) {
-            planName = "節約プラン";
-        } else {
-            planName = "未選択";
-        }
-
-        // 翻訳した日本語を「planName」という名前でリクエストに保存する
+        // 2. Strutsのメッセージ機能（プロパティファイル）を呼び出す準備
+        MessageResources resources = getResources(request);
+        // 3. キーを使って文言を取得
+        String planName = resources.getMessage("plan." + planCode);
+        // 4. 翻訳した日本語をリクエストに保存する
         request.setAttribute("planName", planName);
 
         // struts-config.xmlで「success」と名付けた次の画面(result.jsp)へ遷移する

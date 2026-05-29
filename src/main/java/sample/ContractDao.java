@@ -13,7 +13,6 @@ public class ContractDao {
     
     // Oracleの接続情報
     private static final ResourceBundle rb = ResourceBundle.getBundle("db");
-
     private static final String URL = rb.getString("db.url");
     private static final String USER = rb.getString("db.user");
     private static final String PASSWORD = rb.getString("db.password");
@@ -36,15 +35,14 @@ public class ContractDao {
         // 2. データベースへの接続とSQLの実行
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            // Formから値を取り出してSQLにセット
+
             pstmt.setString(1, form.getContractorName());
             pstmt.setInt(2, Integer.parseInt(form.getAge()));
             pstmt.setString(3, form.getPlan());
 
             pstmt.executeUpdate();
-            System.out.println("【DAOログ】Oracleへのインサートが成功しました。");
 
+            System.out.println("【DAOログ】Oracleへのインサートが成功しました。");
         } catch (SQLException e) {
             System.out.println("【DAOエラー】データベース操作中に例外が発生しました。");
             e.printStackTrace();
@@ -74,10 +72,11 @@ public class ContractDao {
                 dto.setId(rs.getInt("id"));
                 dto.setName(rs.getString("contractor_name"));
                 dto.setAge(rs.getInt("age"));
-                dto.setPlan(rs.getString("plan_code"));
+                dto.setPlanCode(rs.getString("plan_code"));
 
                 list.add(dto);
             }
+            System.out.println("【DAOログ】データ全件取得が成功しました。");
         } catch (SQLException e) {
             System.out.println("【DAOエラー】データ全件取得中に例外が発生しました。");
             e.printStackTrace();
@@ -109,6 +108,7 @@ public class ContractDao {
                     return rs.getInt(1) > 0;
                 }
             }
+            System.out.println("【DAOログ】名前の重複チェックが成功しました。");
         } catch (SQLException e) {
             System.out.println("【DAOエラー】名前の重複チェック中に例外が発生しました。");
             e.printStackTrace();
@@ -136,6 +136,7 @@ public class ContractDao {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
             
+            System.out.println("【DAOログ】ID " + id + " の契約データの削除が成功しました。");
         } catch (SQLException e) {
             System.out.println("【DAOエラー】データ削除中に例外が発生しました。");
             e.printStackTrace();
