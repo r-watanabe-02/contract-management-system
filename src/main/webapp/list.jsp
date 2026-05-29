@@ -9,7 +9,6 @@
     <title>契約情報一覧</title>
     
     <style>
-        /* ⭕ 全体の背景とフォント（共通仕様） */
         body {
             font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
             background-color: #f4f6f9;
@@ -18,7 +17,6 @@
             margin: 40px;
         }
 
-        /* ⭕ 白いカード型の箱（横幅800px） */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -28,7 +26,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        /* ⭕ 青い下線付きの見出し */
         h2 {
             color: #0056b3;
             border-bottom: 2px solid #e9ecef;
@@ -37,7 +34,6 @@
             margin-bottom: 25px;
         }
 
-        /* ⭕ ナビゲーションリンク */
         .nav-link {
             display: inline-block;
             margin-bottom: 20px;
@@ -49,33 +45,28 @@
             text-decoration: underline;
         }
 
-        /* 🛠️ 修正：縦線・横線をスマートに張り巡らせた格子状のテーブル */
         .modern-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
             font-size: 14px;
-            /* テーブルの一番外側を薄いグレーの線で囲む */
             border: 1px solid #ced4da; 
         }
         .modern-table th, .modern-table td {
-            padding: 12px 14px; /* 縦横の境界線が見やすいよう、余白を微調整 */
+            padding: 12px 14px;
             text-align: left;
-            /* ⭕ 縦線と横線をすべて配置（色はギラつかない上品なグレーに統一） */
             border: 1px solid #ced4da; 
         }
         .modern-table th {
-            background-color: #f8fafc; /* ヘッダーの薄いグレー */
+            background-color: #f8fafc;
             color: #495057;
             font-weight: bold;
         }
-        
-        /* 行にマウスを乗せた時のフワッとした背景色変化 */
+
         .modern-table tr:hover {
             background-color: #f8f9fa;
         }
 
-        /* ⭕ 削除リンク用の赤色 */
         .btn-delete {
             color: #dc3545;
             text-decoration: none;
